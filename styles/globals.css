@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #F6F5F0;
+  color: #152420;
+}
+
+.btn {
+  @apply rounded-sm2 font-semibold text-sm flex items-center justify-center gap-2 px-5 py-3 transition-opacity;
+}
+.btn:active { @apply opacity-80; }
+.btn-primary { @apply bg-forest text-white; }
+.btn-secondary { @apply bg-transparent text-forest border border-forest; }
+.btn-danger-outline { @apply bg-transparent text-danger border border-danger; }
+
+.card { @apply bg-paper border border-line rounded-md2; }
+
+.field-label { @apply text-xs font-semibold text-ink-soft mb-1.5 block; }
+.field {
+  @apply w-full border border-line rounded-sm2 px-3.5 py-3 text-sm bg-white text-ink outline-none;
+}
+.field:focus { @apply border-forest; }
+
+.chip { @apply inline-flex items-center gap-1.5 text-[11.5px] font-semibold px-3 py-1 rounded-full; }
