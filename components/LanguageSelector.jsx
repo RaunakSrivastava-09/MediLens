@@ -11,16 +11,17 @@ export const SUPPORTED_LANGUAGES = [
   { code: "kn", label: "ಕನ್ನಡ — Kannada" },
   { code: "ml", label: "മലയാളം — Malayalam" },
   { code: "pa", label: "ਪੰਜਾਬੀ — Punjabi" },
-  { code: "ur", label: "اردو — Urdu" }
+  { code: "ur", label: "اردو — Urdu" },
 ];
 
-// A simple dropdown used both at signup (setting the saved default) and
-// inline on a medicine card (a one-off override, per the "🌐 override"
-// idea discussed for the explanation screen).
-export default function LanguageSelector({ value, onChange, className = "" }) {
+export default function LanguageSelector({
+  value,
+  onChange,
+  className = "",
+}) {
   return (
     <select
-      className={`field ${className}`}
+      className={`w-full rounded-xl border border-[#DDE9E3] bg-[#F8FBF9] px-3.5 py-3 text-sm text-[#17392C] outline-none transition focus:border-[#2F8F68] focus:ring-1 focus:ring-[#2F8F68]/20 ${className}`}
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
