@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -35,19 +34,21 @@ export default function DashboardNavbar() {
     return pathname.startsWith(href);
   };
 
+  const handleSignOut = () => {
+    signOut({ callbackUrl: "/login" });
+  };
+
   return (
-    <nav className="border-b border-line bg-bg">
-      <div className="w-full px-4 sm:px-6">
-
-        {/* Desktop Navbar */}
-        <div className="hidden md:flex h-[68px] items-center justify-between gap-4">
-
+    <nav className="sticky top-0 z-50 border-b border-[#DDE9E3] bg-white/95 backdrop-blur">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        {/* Desktop */}
+        <div className="hidden md:flex h-[68px] items-center justify-between gap-6">
           {/* Logo */}
           <Link
             href="/dashboard"
             className="flex items-center gap-2.5 shrink-0"
           >
-            <div className="w-9 h-9 rounded-[10px] bg-forest flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-[#17392C] flex items-center justify-center shadow-sm">
               <svg
                 width="18"
                 height="18"
@@ -56,23 +57,21 @@ export default function DashboardNavbar() {
               >
                 <path
                   d="M12 2v20M2 12h20"
-                  stroke="#fff"
+                  stroke="white"
                   strokeWidth="2.4"
                   strokeLinecap="round"
                 />
               </svg>
             </div>
 
-            <span className="font-serif text-lg font-semibold text-ink">
+            <span className="text-[18px] font-semibold tracking-tight text-[#17392C]">
               MediLens
             </span>
           </Link>
 
-          {/* Right side */}
-          <div className="flex items-center gap-4 min-w-0">
-
-            {/* Navigation */}
-            <div className="flex items-center gap-3 whitespace-nowrap">
+          {/* Navigation + Account */}
+          <div className="flex items-center gap-5 min-w-0">
+            <div className="flex items-center gap-1">
               {links.map((link) => {
                 const active = isActive(link.href);
 
@@ -80,10 +79,10 @@ export default function DashboardNavbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-1.5 text-[13px] whitespace-nowrap transition ${
+                    className={`relative px-3 py-2 rounded-lg text-[13px] transition-all ${
                       active
-                        ? "text-forest font-semibold"
-                        : "text-ink-soft hover:text-ink"
+                        ? "bg-[#E8F5EE] text-[#2F8F68] font-semibold"
+                        : "text-[#71837B] hover:bg-[#F7FAF8] hover:text-[#17392C]"
                     }`}
                   >
                     {link.name}
@@ -92,28 +91,26 @@ export default function DashboardNavbar() {
               })}
             </div>
 
-            {/* Account */}
+            {/* Profile */}
             <button
-              onClick={() =>
-                signOut({ callbackUrl: "/login" })
-              }
-              className="w-9 h-9 rounded-full bg-mint-tint text-forest flex items-center justify-center text-xs font-bold hover:opacity-80 transition shrink-0"
+              onClick={handleSignOut}
               title="Sign out"
+              className="w-9 h-9 rounded-full bg-[#E8F5EE] border border-[#DDE9E3] text-[#2F8F68] flex items-center justify-center text-xs font-bold hover:bg-[#DDF1E7] transition shrink-0"
             >
               {initials || "•"}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navbar */}
+        {/* Mobile */}
         <div className="md:hidden">
-
           <div className="h-[62px] flex items-center justify-between">
+            {/* Logo */}
             <Link
               href="/dashboard"
               className="flex items-center gap-2.5"
             >
-              <div className="w-9 h-9 rounded-[10px] bg-forest flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl bg-[#17392C] flex items-center justify-center shadow-sm">
                 <svg
                   width="18"
                   height="18"
@@ -122,30 +119,30 @@ export default function DashboardNavbar() {
                 >
                   <path
                     d="M12 2v20M2 12h20"
-                    stroke="#fff"
+                    stroke="white"
                     strokeWidth="2.4"
                     strokeLinecap="round"
                   />
                 </svg>
               </div>
 
-              <span className="font-serif text-lg font-semibold text-ink">
+              <span className="text-[18px] font-semibold tracking-tight text-[#17392C]">
                 MediLens
               </span>
             </Link>
 
+            {/* Profile */}
             <button
-              onClick={() =>
-                signOut({ callbackUrl: "/login" })
-              }
-              className="w-9 h-9 rounded-full bg-mint-tint text-forest flex items-center justify-center text-xs font-bold"
+              onClick={handleSignOut}
               title="Sign out"
+              className="w-9 h-9 rounded-full bg-[#E8F5EE] border border-[#DDE9E3] text-[#2F8F68] flex items-center justify-center text-xs font-bold"
             >
               {initials || "•"}
             </button>
           </div>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-3 whitespace-nowrap">
+          {/* Mobile Navigation */}
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-3 scrollbar-hide">
             {links.map((link) => {
               const active = isActive(link.href);
 
@@ -153,10 +150,10 @@ export default function DashboardNavbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-1.5 rounded-full text-xs ${
+                  className={`shrink-0 px-3 py-1.5 rounded-full text-xs transition-all ${
                     active
-                      ? "bg-mint-tint text-forest font-semibold"
-                      : "text-ink-soft"
+                      ? "bg-[#17392C] text-white font-medium shadow-sm"
+                      : "bg-[#F7FAF8] text-[#71837B] border border-[#DDE9E3] hover:text-[#17392C]"
                   }`}
                 >
                   {link.name}
@@ -165,9 +162,7 @@ export default function DashboardNavbar() {
             })}
           </div>
         </div>
-
       </div>
     </nav>
   );
 }
-
