@@ -434,7 +434,7 @@ export default function SettingsPage() {
               </div>
 
               <button
-                onClick={() => signOut({ callbackUrl: "/login" })}
+                onClick={() => signOut({ callbackUrl: "/" })}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E4B8B8] bg-[#FFF9F9] px-5 py-2.5 text-xs font-bold text-[#B34D4D] transition-all hover:border-[#D99B9B] hover:bg-[#FFF0F0] sm:w-auto"
               >
                 Sign out
